@@ -172,7 +172,8 @@
 
 function getproduct(parameter = localStorage.getItem('myparameter')) {
     document.querySelector('input').value = parameter;
-    const filterproduct = JSON.parse(localStorage.getItem("myproduct"));
+    document.querySelector('.box').innerText= JSON.parse(localStorage.getItem('cartproducts').length);
+    var filterproduct = JSON.parse(localStorage.getItem("myproduct"));
 
     if (parameter === "price Low to High") {
         for (const key in filterproduct) {
@@ -189,11 +190,14 @@ function getproduct(parameter = localStorage.getItem('myparameter')) {
             });
         }
 
+    }else if(parameter = " ")
+    {
+       
     }
     else {
         for (const key in filterproduct) {
             filterproduct[key] = filterproduct[key].filter((data) => {
-                return data.company.toLowercase().includes(parameter.toLowerCase());
+                return data.company.toLowerCase().includes(parameter.toLowerCase());
                 
             });
         }
@@ -226,18 +230,22 @@ function getproduct(parameter = localStorage.getItem('myparameter')) {
             let img = document.createElement('img');
             let h5 = document.createElement('h5');
             let p = document.createElement('p');
+            let button = document.createElement('button');
 
             h3.append(element.company);
             h4.append(element.model);
             h5.append(element.price);
             img.src = (element.img);
             p.append(element.description);
+            button.innerHTML = "Add Cart";
+
 
             main.appendChild(img);
             main.appendChild(h3);
             main.appendChild(h4);
             main.appendChild(h5);
             main.appendChild(p);
+            main.appendChild(button);
 
             div.appendChild(main);
         }
@@ -254,5 +262,18 @@ document.querySelector('input').onchange = function (e) {
     localStorage.setItem("myparameter", e.target.value);
     location.href = "index.html";
 }
+if (localStorage.getItem("cartproducts") == null) {
+    localStorage.setItem("cartproducts", JSON.stringify([]));
+}
+document.body.addEventListener('click', function(e){
+    var cartfilter = JSON.parse(localStorage.getItem('cartproducts'))
+   if (e.target.tagName == "BUTTON") {
+    cartfilter.push(e.target.parentElement.children[2].innerText);
+    localStorage.setItem("cartproducts",JSON.stringify(cartfilter));
+   }
+   console.log(cartfilter);
+   
+    
+})
 
 getproduct();

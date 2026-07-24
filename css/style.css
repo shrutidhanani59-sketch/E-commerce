@@ -2,8 +2,65 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
 }
-article
+
+section div
 {
-    background-color: aqua;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 5px;
+}
+section
+{
+   padding: 20px;
+}
+main
+{
+    background-color:whitesmoke;
+    border-radius: 10px;
+    padding-left: 5px;
+    cursor: pointer;
+    transition: .2s;
+    
+}
+main:hover
+{
+    transform: translateY(-5px);
+    box-shadow: 1px 1px 2px rgb(180, 178, 178);
+
+}
+main img
+{
+    height: 200px;
+    width: 200px;
+}
+main p
+{
+    font-size: 12px;
+}
+.nave
+{
+    padding: 20px;
+    box-shadow: 1px 1px 2px rgb(180, 178, 178);
+    display: flex;
+    justify-content: space-between;
+}
+.logo img
+{
+    height: 30px;
+}
+h2
+{
+    color:rgb(1, 37, 51) ;
+}
+input
+{
+    border: 2px solid black;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+.cart i
+{
+    font-size: 20px;
 }

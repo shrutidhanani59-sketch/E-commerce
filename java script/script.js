@@ -172,10 +172,10 @@
 
 function getproduct(parameter = localStorage.getItem('myparameter')) {
     document.querySelector('input').value = parameter;
-    document.querySelector('.box').innerText= JSON.parse(localStorage.getItem('cartproducts').length);
-    var filterproduct = JSON.parse(localStorage.getItem("myproduct"));
+    document.querySelector(".box").innerText= JSON.parse(localStorage.getItem("cartproducts")).length;
+    const filterproduct = JSON.parse(localStorage.getItem("myproduct"));
 
-    if (parameter === "price Low to High") {
+    if (parameter == "price Low to High") {
         for (const key in filterproduct) {
             filterproduct[key].sort((a, b) => {
                 return a.price - b.price;
@@ -183,14 +183,14 @@ function getproduct(parameter = localStorage.getItem('myparameter')) {
         }
 
     }
-    else if (parameter === "price High to Low") {
+    else if (parameter == "price High to Low") {
         for (const key in filterproduct) {
             filterproduct[key].sort((a, b) => {
                 return b.price - a.price;
             });
         }
 
-    }else if(parameter = " ")
+    }else if(parameter == " ")
     {
        
     }
@@ -262,18 +262,15 @@ document.querySelector('input').onchange = function (e) {
     localStorage.setItem("myparameter", e.target.value);
     location.href = "index.html";
 }
-if (localStorage.getItem("cartproducts") == null) {
-    localStorage.setItem("cartproducts", JSON.stringify([]));
-}
+
 document.body.addEventListener('click', function(e){
-    var cartfilter = JSON.parse(localStorage.getItem('cartproducts'))
+    let cartfilter = JSON.parse(localStorage.getItem('cartproducts'));
    if (e.target.tagName == "BUTTON") {
     cartfilter.push(e.target.parentElement.children[2].innerText);
     localStorage.setItem("cartproducts",JSON.stringify(cartfilter));
+    document.querySelector(".box").innerText = cartfilter.length;
    }
-   console.log(cartfilter);
-   
-    
-})
+   console.log(cartfilter);   
+});
 
 getproduct();

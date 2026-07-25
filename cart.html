@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        const carts = JSON.parse(localStorage.getItem('cartproducts'));
+        const products = JSON.parse(localStorage.getItem('myproduct'));
+
+        for (const key in products) {
+            let div = document.createElement('div');
+            for (const element of products[key]) {
+                if (carts.includes(element.model)) {
+
+                    let main = document.createElement('main');
+                    let h3 = document.createElement('h3');
+                    let h4 = document.createElement('h4');
+                    let img = document.createElement('img');
+                    let h5 = document.createElement('h5');
+                    let p = document.createElement('p');
+                    let button = document.createElement('button');
+
+                    h3.append(element.company);
+                    h4.append(element.model);
+                    h5.append(element.price);
+                    img.src = (element.img);
+                    p.append(element.description);
+                    button.innerHTML = "-";
+
+
+                    main.appendChild(img);
+                    main.appendChild(h3);
+                    main.appendChild(h4);
+                    main.appendChild(h5);
+                    main.appendChild(p);
+                    main.appendChild(button);
+
+                    div.appendChild(main);
+                }
+            }
+            document.body.appendChild(div);
+
+        }
+
+        document.body.addEventListener('click', function (e) {
+            if (e.target.tagName == "BUTTON") {
+                console.log(e.target.parentElement.children[2].innerText);
+                var temp = carts.filter((element) => {
+                    return element != e.target.parentElement.children[2].innerText;
+                });
+                localStorage.setItem("cartproducts", JSON.stringify(temp));
+
+            }
+        });
+    </script>
+</body>
+
+</html>

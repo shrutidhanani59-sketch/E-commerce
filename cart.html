@@ -9,11 +9,10 @@
 
 <body>
 
-    <h1>hi</h1>
-
+<h1>kji</h1>
     <script>
-        const carts = JSON.parse(localStorage.getItem("cartproducts"));
-        const products = JSON.parse(localStorage.getItem("myproduct"));
+        const carts = JSON.parse(localStorage.getItem('cartproducts'));
+        const products = JSON.parse(localStorage.getItem('myproduct'));
 
         for (const key in products) {
             let div = document.createElement('div');
@@ -55,14 +54,14 @@
                 console.log(e.target.parentElement.children[2].innerText);
                 var temp = carts.filter((element) => {
                     return element != e.target.parentElement.children[2].innerText;
-
-                    localStorage.setItem("cartproducts", JSON.stringify(temp));
-                location.href = "cart.html";
-
                 });
-                
+                localStorage.setItem("cartproducts", JSON.stringify(temp));
+                e.target.parentElement.remove();
+
             }
         });
+        console.log(carts);
+console.log(products);
     </script>
 </body>
 

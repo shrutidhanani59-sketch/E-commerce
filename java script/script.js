@@ -273,8 +273,8 @@ document.body.addEventListener('click', function(e){
    console.log(cartfilter);   
 });
 
-document.querySelector(".cart").onclick = function () {
+document.querySelector(".crt").onclick = function () {
     location.href = "cart.html";
-}
+};
 
 getproduct();
